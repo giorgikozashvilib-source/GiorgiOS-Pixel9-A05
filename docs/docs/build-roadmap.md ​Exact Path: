@@ -1,0 +1,13 @@
+# Build & Compilation Roadmap
+
+Building a complete custom AOSP or Pixel-based ROM from scratch requires significant compute resources that exceed standard GitHub Actions runner limits (~14 GB free disk space and ~7 GB RAM). Full AOSP builds require 250 GB+ SSD storage and 16 GB+ RAM.
+
+## Phase Strategy
+1. **Phase 1: Project Setup & Structure (Current)**
+   - Initialize repository structure, device documentation, and automated validation workflows.
+2. **Phase 2: Environment Setup & Local/Cloud Staging**
+   - Prepare external build environments or Docker containers if expanding beyond GitHub Actions limits.
+3. **Phase 3: Tree Verification & Dependencies**
+   - Integrate vendor blobs, kernel source, and overlay configurations corresponding to `a05m`.
+4. **Phase 4: Packaging & Recovery Testing**
+   - Prepare safe flashable packages (`super.img` integration via custom recovery) with strict rollback protections.
