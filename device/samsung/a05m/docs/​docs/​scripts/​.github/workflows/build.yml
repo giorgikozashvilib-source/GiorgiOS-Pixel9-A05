@@ -1,0 +1,63 @@
+name: GiorgiOS Project Validation
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate project structure
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Verify Required Files Existence and Non-Empty Status
+        run: |
+          echo "Checking for essential project files..."
+          FILES=(
+            "README.md"
+            "docs/device-profile.md"
+            "docs/build-roadmap.md"
+            "scripts/check-project.sh"
+          )
+          for file in "${FILES[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "❌ Error: Required file missing: $file"
+              exit 1
+            fi
+            if [ ! -s "$file" ]; then
+              echo "❌ Error: Required file is empty: $file"
+              exit 1
+            fi
+            echo "✓ File present and non-empty: $file"
+          done
+
+      - name: Verify Device Identifiers
+        run: |
+          echo "Checking device profile for SM-A055F and a05m..."
+          if ! grep -q "SM-A055F" docs/device-profile.md; then
+            echo "❌ Error: SM-A055F missing from docs/device-profile.md"
+            exit 1
+          fi
+          if ! grep -q "a05m" docs/device-profile.md; then
+            echo "❌ Error: a05m missing from docs/device-profile.md"
+            exit 1
+          fi
+          echo "✓ Device identifiers verified."
+
+      - name: Validate Bash Script Syntax
+        run: |
+          echo "Checking syntax for scripts/check-project.sh..."
+          bash -n scripts/check-project.sh
+          echo "✓ Script syntax valid."
+
+      - name: Execute Validation Script
+        run: |
+          bash scripts/check-project.sh
