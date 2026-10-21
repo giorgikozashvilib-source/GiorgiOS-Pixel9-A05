@@ -1,0 +1,49 @@
+# Device Profile: Samsung Galaxy A05 (SM-A055F / `a05m`)
+
+This document outlines the current technical profile for the Samsung Galaxy A05. It distinguishes between user-reported hardware details, verified technical specifications, and parameters that remain unverified.
+
+---
+
+## 📱 Hardware & Platform Information
+
+### Reported Specifications (User Reported)
+- **Device Model**: Samsung Galaxy A05 (`SM-A055F`)
+- **Device Codename**: `a05m`
+- **Architecture**: ARM64 (`arm64-v8a`)
+- **Platform / SoC Family**: MediaTek (`mt6768` family variant)
+- **Vendor Base OS Version**: Android 15
+
+### Verified Hardware Profile
+- **CPU Configuration**: Octa-core (MediaTek Helio G85 ARM Cortex platform)
+- **Partition Type**: Dynamic Partitions (`super` partition system layout)
+- **Treble Status**: Treble-compliant base structure (VNDK/System-as-Root implementation present on stock)
+
+---
+
+## ❓ Unverified Parameters & Technical Unknowns
+
+The following critical system parameters require direct device inspection (via `getprop`, recovery dumps, or stock firmware analysis) before any compilation or flashing attempt:
+
+1. **Exact Firmware Fingerprint**: Unverified (`ro.build.fingerprint` needs to be confirmed from active device).
+2. **VNDK / System Interface Version**: Unverified (Exact VNDK version exposed by Android 15 vendor base).
+3. **Partition Table & Sizes**: Exact byte limits for `system`, `vendor`, `product`, `odm`, and total `super` partition capacity are currently unverified.
+4. **Android Verified Boot (AVB) & Key Enforcement**: Verification status of `vbmeta` flags, roll-back index, and custom key acceptance on this exact bootloader revision.
+5. **Kernel Source Status**: Official Samsung open-source kernel release for Android 15 vendor base is unverified for this exact sub-variant.
+6. **Device Tree / Vendor Blobs**: No verified, fully functioning custom AOSP device tree (`device/samsung/a05m`) or vendor blobs tree exists in this repository yet.
+
+---
+
+## ⚡ GSI & Treble Compatibility Realities
+
+While the device supports Project Treble and dynamic partitioning, **Treble support alone does not guarantee that a Generic System Image (GSI) or custom system build will boot or be usable**. 
+
+Key considerations for MediaTek Samsung hardware:
+- **Vendor Dependencies**: MediaTek display drivers, audio HALs, camera services, and radio interface layers (RIL) rely on OEM-specific vendor libraries.
+- **Hardware Abstraction Mismatches**: A generic or Pixel-inspired system image may fail to boot or experience critical hardware failure (loss of touchscreen, cellular network, audio, or graphics acceleration) if vendor binaries do not align exactly with system interfaces.
+
+---
+
+## 🛡️ Project Safety
+
+- **No ROM Binary Built**: No compiled system images or flashable archives exist at this phase.
+- **Stock Protection**: Do not modify system partitions without confirmed recovery access and complete stock firmware backups (`Odin` flashable files).
