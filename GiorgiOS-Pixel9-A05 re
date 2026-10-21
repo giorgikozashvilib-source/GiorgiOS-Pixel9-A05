@@ -1,0 +1,11 @@
+
+# GiorgiOS Pixel 9 Edition
+
+Experimental Pixel-inspired Android system project.
+
+- Target: Samsung Galaxy A05 SM-A055F
+- Device codename: a05m
+- Architecture: ARM64
+- Vendor base: Android 15
+
+Status: Early development. Not a flashable ROM yet.
