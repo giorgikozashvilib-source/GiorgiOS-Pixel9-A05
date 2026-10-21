@@ -1,11 +1,33 @@
 £!/usr/bin/env bash
 set -e
-echo @Checking project structure...@
-[ -f @README.md@ ] && echo @ README.md@
-[ -f @docs/device-profile.md@ ] && echo @ docs/device-profile.md@
-[ -f @docs/build-roadmap.md@ ] && echo @ docs/build-roadmap.md@
-[ -f @device/samsung/a05m/AndroidProducts.mk@ ] && echo @ AndroidProducts.mk@
-[ -f @device/samsung/a05m/BoardConfig.mk@ ] && echo @ BoardConfig.mk@
-[ -f @device/samsung/a05m/giorgios_a05m.mk@ ] && echo @ giorgios_a05m.mk@
-[ -f @device/samsung/a05m/device.mk@ ] && echo @ device.mk@
-echo @SUCCESS: All project structure checks passed!@
+
+echo @==================================================@
+echo @  GiorgiOS Pixel 9 Edition - Project Check Script @
+echo @==================================================@
+echo @Running validation checks on repository structure...@
+echo @@
+
+REQUIRED_FILES=@REAAAAAAAAAAADME.md docs/device-profile.md docs/bbuild-roadmap.md docs/source-research.md device/samsung/a05m/AndroidProducts.mk device/samsung/a05m/BoardConfig.mk device/samsung/a05m/giorgios_a05m.mk device/samsung/a05m/device.mk@
+
+for file in $REQUIRED_FILES; do
+  if [ -f @$file@ ]; then
+    echo @ Verified file: $file@
+  else
+    echo @ Missing required file: $file@
+    exit 1
+  fi
+done
+
+if grep -q @SM-A055F@ docs/device-profile.md && grep -q @a05m@ docs/device-profile.md; then
+  echo @ Verified device identifiers in docs/device-profile.md@
+else
+  echo @ Device profile missing target identifiers@
+  exit 1
+fi
+
+echo @@
+echo @==================================================@
+echo @ SUCCESS: All project structure checks passed!@
+echo @ Note: This check validates repository structure only.@
+echo @ No ROM has been compiled or modified.@
+echo @==================================================@
