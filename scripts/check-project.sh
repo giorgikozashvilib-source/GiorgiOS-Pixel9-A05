@@ -7,7 +7,7 @@ echo @==================================================@
 echo @Running validation checks on repository structure...@
 echo @@
 
-REQUIRED_FILES=@REAAAAAAAAAAADME.md docs/device-profile.md docs/bbuild-roadmap.md docs/source-research.md device/samsung/a05m/AndroidProducts.mk device/samsung/a05m/BoardConfig.mk device/samsung/a05m/giorgios_a05m.mk device/samsung/a05m/device.mk@
+REQUIRED_FILES=@README.md docs/device-profile.md docs/build-roadmap.md docs/source-research.md device/samsung/a05m/AndroidProducts.mk device/samsung/a05m/BoardConfig.mk device/samsung/a05m/giorgios_a05m.mk device/samsung/a05m/device.mk@
 
 for file in $REQUIRED_FILES; do
   if [ -f @$file@ ]; then
@@ -28,6 +28,4 @@ fi
 echo @@
 echo @==================================================@
 echo @ SUCCESS: All project structure checks passed!@
-echo @ Note: This check validates repository structure only.@
-echo @ No ROM has been compiled or modified.@
 echo @==================================================@
