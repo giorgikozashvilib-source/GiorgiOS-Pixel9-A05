@@ -1,0 +1,23 @@
+#
+# Copyright (C) 2026 GiorgiOS Custom Project
+#
+# BoardConfig.mk for Samsung Galaxy A05 (a05m)
+#
+
+# Architecture
+TARGET_ARCH := arm64
+TARGET_ARCH_VARIANT := armv8-a
+TARGET_CPU_ABI := arm64-v8a
+TARGET_CPU_ABI2 := 
+TARGET_CPU_VARIANT := generic
+
+# Platform
+TARGET_BOARD_PLATFORM := mt6769
+
+# File systems & Dynamic Partitions
+BOARD_BUILD_SYSTEM_ROOT_IMAGE := false
+BOARD_USES_DYNAMIC_PARTITIONS := true
+BOARD_SUPER_PARTITION_SIZE := 9126805504
+BOARD_SUPER_PARTITION_GROUPS := samsung_dynamic_partitions
+BOARD_SAMSUNG_DYNAMIC_PARTITIONS_SIZE := 9126805504
+BOARD_SAMSUNG_DYNAMIC_PARTITIONS_PARTITION_LIST := system vendor product odm
