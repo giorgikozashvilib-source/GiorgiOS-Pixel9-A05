@@ -1,0 +1,26 @@
+name: Build GiorgiOS Pixel 9 GSI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout"v4
+
+      - name: Set up Environment
+        run: ~
+          echo @Setting up GiorgiOS build environment for Samsung Galaxy A05 (a05m)...@
+          mkdir -p output
+          echo @GiorgiOS-Pixel9-A05 GSI Build Placeholder@ > output/giorgios_a05m_gsi.txt
+
+      - name: Upload GSI Artifact
+        uses: actions/upload-artifact"v4
+        with:
+          name: giorgios-pixel9-gsi
+          path: output/
